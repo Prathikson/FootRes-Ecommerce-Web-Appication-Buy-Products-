@@ -1,0 +1,70 @@
+﻿@page
+@model Itec245_Final.Pages.MyShoes.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Shoes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Shoes.Id" />
+            <div class="form-group">
+                <label asp-for="Shoes.Images" class="control-label"></label>
+                <input asp-for="Shoes.Images" class="form-control" />
+                <span asp-validation-for="Shoes.Images" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Images2" class="control-label"></label>
+                <input asp-for="Shoes.Images2" class="form-control" />
+                <span asp-validation-for="Shoes.Images2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Images3" class="control-label"></label>
+                <input asp-for="Shoes.Images3" class="form-control" />
+                <span asp-validation-for="Shoes.Images3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Brand" class="control-label"></label>
+                <input asp-for="Shoes.Brand" class="form-control" />
+                <span asp-validation-for="Shoes.Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Name" class="control-label"></label>
+                <input asp-for="Shoes.Name" class="form-control" />
+                <span asp-validation-for="Shoes.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Price" class="control-label"></label>
+                <input asp-for="Shoes.Price" class="form-control" />
+                <span asp-validation-for="Shoes.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.Type" class="control-label"></label>
+                <input asp-for="Shoes.Type" class="form-control" />
+                <span asp-validation-for="Shoes.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Shoes.CreatedDate" class="control-label"></label>
+                <input asp-for="Shoes.CreatedDate" class="form-control" />
+                <span asp-validation-for="Shoes.CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

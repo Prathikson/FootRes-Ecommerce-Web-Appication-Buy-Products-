@@ -1,0 +1,155 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script src="~/js/hider.js"></script>
+<link href="~/css/styles.css" rel="stylesheet" />
+<style>
+    body {
+        background-color: black;
+
+    }
+</style>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="carouselExample" class="carousel slide carousel-fade">
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <video class="d-block w-100" autoplay loop muted>
+                <source src="~/Videos/shoe1.mp4" type="video/mp4" />
+            </video>
+           
+        </div>
+        <div class="carousel-item">
+            <video class="d-block w-100" autoplay loop muted>
+                <source src="~/Videos/shoe2.mp4" type="video/mp4" />
+            </video>
+           
+        </div>
+        <div class="carousel-item">
+            <video class="d-block w-100" autoplay loop muted>
+                <source src="~/Videos/Puma.mp4" type="video/mp4" />
+            </video>
+            
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br />
+<br />
+
+
+<!-- Image Selector start -->
+
+<section>
+<div>
+    <form method="post">
+    <div class="d-flex">
+        <div class="d-flex p-md-5">
+            <button asp-page-handler="Cust1" asp-route-myvalue="Nike" class="bg-black rounded-circle ">
+                        <img typr="submit" class="btn rounded-circle hovimg" style="width:150px; height:150px;" src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F67979fc2-9bc6-4ef1-a91a-9f8129c57645_1500x1500.jpeg" alt="">
+
+                    </button>
+
+        </div>
+
+            <div class="d-flex p-md-5">
+                    <button asp-page-handler="Cust1" asp-route-myvalue="Adidas" class="bg-black rounded-circle ">
+                <img class="rounded-circle hovimg" style="width:150px; height:150px;" src="https://njmarlins.com/wp-content/uploads/sites/692/2015/04/adidas-logo.jpg" alt="">
+                    </button>
+         </div>
+
+            <div class="d-flex p-md-5">
+                    <button asp-page-handler="Cust1" asp-route-myvalue="Puma" class="bg-black rounded-circle ">
+                <img class="rounded-circle hovimg" style="width:150px; height:150px;" src="https://assets.turbologo.com/blog/en/2019/11/19084917/puma-logo-cover.png" alt="">
+                    </button>
+            </div>
+
+            <div class="d-flex p-md-5">
+                    <button asp-page-handler="Cust1" asp-route-myvalue="UA" class="bg-black rounded-circle ">
+                <img class="rounded-circle hovimg" style="width:150px; height:150px;" src="https://w0.peakpx.com/wallpaper/569/457/HD-wallpaper-under-armour-black-logo-tinku-bandito.jpg" alt="">
+                    </button>
+            </div>
+                <div class="d-flex p-md-5">
+                    <button asp-page-handler="Cust1" asp-route-myvalue="NB" class="bg-black rounded-circle ">
+                        <img class="rounded-circle hovimg" style="width:150px; height:150px;" src="https://zeevector.com/wp-content/uploads/New-Balance-Logo-Black-and-White.png" alt="">
+                    </button>
+                </div>
+
+                <div class="d-flex p-md-5">
+                    <button asp-page-handler="Cust1" asp-route-myvalue="Vans" class="bg-black rounded-circle ">
+                        <img class="rounded-circle hovimg" style="width:150px; height:150px;" src="https://i.pinimg.com/originals/ff/2c/c9/ff2cc9bdd6279c6531163189137a60a7.jpg" alt="">
+                    </button>
+                </div>
+                <div class="d-flex p-md-5">
+                    <button asp-page-handler="Cust1" asp-route-myvalue="North" class="bg-black rounded-circle ">
+                        <img class="rounded-circle hovimg" style="width:150px; height:150px;" src="https://1000logos.net/wp-content/uploads/2017/05/Symbol-North-Face.jpg" alt="">
+                    </button>
+                </div>
+                <div class="d-flex p-md-5">
+                    <button asp-page-handler="Cust1" asp-route-myvalue="Reebok" class="bg-black rounded-circle ">
+                        <img class="rounded-circle hovimg" style="width:150px; height:150px;" src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/S/aplus-media-library-service-media/3b14cfb9-b10b-4215-af2b-acc5f0efd342.__CR0,0,1464,600_PT0_SX1464_V1___.jpg" alt="">
+                    </button>
+                </div>
+                <div class="d-flex p-md-5">
+                    <button asp-page-handler="Cust1" asp-route-myvalue="Skechers" class="bg-black rounded-circle ">
+                        <img class="rounded-circle hovimg" style="width:150px; height:150px;" src="https://www.skechers.com/on/demandware.static/Sites-USSkechers-Site/-/default/images/skechers_logo.png" alt="">
+                    </button>
+                </div>
+
+    </div>
+        </form>
+</div>
+</section>
+
+
+
+<!-- Image Selector End -->
+
+
+    <!-- Subscribe Start -->
+    <div class="container-fluid bg-dark my-5">
+        <div class="row justify-content-md-center py-5 px-xl-5">
+            <div class="col-md-6 col-12 py-5">
+                <div class="text-center mb-2 pb-2">
+                    <h2 class="section-title px-5 mb-3"><span class="bg-dark px-2">Stay Updated</span></h2>
+                    <p id="next">Subscribe to Stay Updated</p>
+                </div>
+                <form method="post">
+                    <div class="input-group" id="Sub">
+                        <input type="email" id="mail" class="form-control border-white p-2" placeholder="Email Goes Here">
+                        <div class="input-group-append">
+                        <a class="btn button-cool" onclick="myFunction()"  style="--content:'SUBSCRIBE'; left:15px;">
+                            <div class="left"></div>
+                            SUBSCRIBE
+                            <div class="right"></div>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,47 @@
+﻿@page
+@model Itec245_Final.Pages.BrandsSort.UnderArmourModel
+@{
+}
+
+@{
+    ViewData["Title"] = "Under Armour";
+}
+<style>
+    body {
+        background-color: black;
+    }
+
+    .myimg:hover {
+        transform: scale(1.1,1.1);
+        transition: 0.2s;
+    }
+</style>
+
+<h1>Shop</h1>
+
+
+
+<div class="container d-flex ">
+    <div class="row">
+        @foreach (var item in Model.Shoes.Where(a => a.Brand == "Under Armour"))
+        {
+
+            <div class="card m-3" style="width: 18rem;">
+                <a href="@Html.DisplayFor(modelItem => item.Images)">
+                    <img class="card card-img-top myimg" style="height:300px; margin-top:10px;" src="@Html.DisplayFor(modelItem => item.Images)" alt="Card image cap" onclick="myfunction()">
+                </a>
+                <div class="card-body">
+                    <h5 class="text-black">@Html.DisplayFor(modelItem => item.Brand)</h5>
+                    <p class="text-black">@Html.DisplayFor(modelItem => item.Name)</p>
+                    <p class="text-black">@Html.DisplayFor(modelItem => item.Type)</p>
+                    <p class="text-black">Price:  @Html.DisplayFor(modelItem => item.Price)</p>
+                    <form method="post">
+                        <button class="btn btn-success" asp-route-myvalue="@item.Id" asp-page-handler="AddCustom">Add To Cart <i class="fas fa-shopping-cart text-danger"></i></button>
+                    </form>
+                    <br />
+                    <a class="btn btn-success" asp-page="../MyShoes/Details" asp-route-id="@item.Id">More Detail   <i class="fas fa-info text-danger"></i></a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

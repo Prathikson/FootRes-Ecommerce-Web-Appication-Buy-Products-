@@ -1,0 +1,138 @@
+﻿@using Itec245_Final.Models
+@using Microsoft.EntityFrameworkCore
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
+
+@{
+        HelperModel h = new HelperModel();
+        var option = new DbContextOptionsBuilder<ApplicationDbContext>();
+        option.UseSqlServer("Server=localhost;Database=MyshoppingCartDB;user id = sa;password = P@ssword!;encrypt=false;");
+        var context = new ApplicationDbContext(option.Options);
+        var cart = h.GroupItems(User.Identity.Name, context);
+        int count = h.countcart(User.Identity.Name, context);
+        decimal total = h.GetTotal(User.Identity.Name, context);
+}
+   
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FootRes</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Itec245_Final.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Smokum|Acme|Chakra Petch">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand text-light" asp-area="" asp-page="/Index">FootRes</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="./MyShoes/Index">Shop</a>
+                        </li>
+                        @if(User.IsInRole("Admin")){
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="./MyShoes/Create">Admin</a>
+                            </li>
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                   
+                    <div class="end-0 nav-justified">
+                        <button class="btn btn-dark nav-justified" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <i class="fas fa-shopping-cart text-success"></i>
+                            @if (SignInManager.IsSignedIn(User)) {
+                                <span class="badge bg-danger">@count</span>
+                            }
+                            
+                    </button>
+                        
+                    </div>
+
+                    
+                </div>
+                
+               
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-light" id="offcanvasRightLabel">CART</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  
+        </div>
+        <div class="offcanvas-body">
+            <br />
+            <div class="container d-flex ">
+                <div class="row">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        @foreach (var item in cart)
+                        {
+                            <div class="card m-3" style="width: 18rem;">
+                                <a href="@Html.DisplayFor(modelItem => item.Images)">
+                                    <img class="card card-img-top myimg" style="height:250px; margin-top:10px;" src="@Html.DisplayFor(modelItem => item.Images)" alt="Card image cap" onclick="myfunction()">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="text-black">@Html.DisplayFor(modelItem => item.Brand)</h5>
+                                    <p class="text-black">@Html.DisplayFor(modelItem => item.Name)</p>
+                                    <p class="text-black">@Html.DisplayFor(modelItem => item.Type)</p>
+                                    <p class="text-black">Price:  @Html.DisplayFor(modelItem => item.Price)</p>
+                                    <p class="text-black">Quantity:  @Html.DisplayFor(modelItem => item.Quantity)</p>
+
+                                </div>
+                            </div>
+
+
+                        }
+                        @if(cart.Count > 0){
+                            <a asp-page="/Checkout" class="btn-success btn-lg">Checkout $@total CAD</a>
+                        }
+                        
+                    }
+                    
+                </div>
+                
+            </div>
+            
+            <br />
+            <br />
+            
+
+        </div>
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - FootRes - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
